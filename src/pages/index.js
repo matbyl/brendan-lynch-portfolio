@@ -2,73 +2,90 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
-export default class IndexPage extends React.Component {
-  render() {
-    const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
+import Header from '../components/Header.js';
+import Gallery from '../components/Gallery.js';
+import Testimonials from '../components/Testimonials.js';
+
+const IndexPage = (data) => {
+  console.log('!!!!!!!!!!!!!1', data);
+    
+    let testimonialsComponent = '';
+
+    if (testimonialsData) {
+      const { edges: testimonialNodes } = testimonialsData
+
+      const testmonials = testimonialNodes.map(n => {
+        const node = n.node;
+        return { id: node.id, author: node.frontmatter.author, testmonial: node.frontmatter.quote };
+      })
+
+      testimonialsComponent = <Testimonials testimonials={testmonials} />
+    }
+    
+    let galleryComponent = '';
+
+    if (photographsData) {
+      const { edges: photographNodes } = photographsData
+
+      const photographs = photographNodes.map(n => {
+        const node = n.node;
+        return {id: node.id, title: node.frontmatter.title, description: node.frontmatter.description, image: node.frontmatter.photograph};
+      });  
+
+      galleryComponent = <Gallery photographs={photographs} />
+    }
+    
 
     return (
+      <div>
+      <Header />
       <section className="section">
         <div className="container">
           <div className="content">
-            <h1 className="has-text-weight-bold is-size-2">Latest Stories</h1>
+            <h1 className="has-text-centered  has-text-weight-bold is-size-2">About</h1>
           </div>
-          {posts
-            .map(({ node: post }) => (
-              <div
-                className="content"
-                style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
-                key={post.id}
-              >
-                <p>
-                  <Link className="has-text-primary" to={post.fields.slug}>
-                    {post.frontmatter.title}
-                  </Link>
-                  <span> &bull; </span>
-                  <small>{post.frontmatter.date}</small>
-                </p>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button is-small" to={post.fields.slug}>
-                    Keep Reading →
-                  </Link>
-                </p>
-              </div>
-            ))}
         </div>
       </section>
+      {galleryComponent}
+      {testimonialsComponent}
+      </div>
     )
-  }
 }
 
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
-}
+export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] },
-      filter: { frontmatter: { templateKey: { eq: "blog-post" } }}
+    photographsData: allMarkdownRemark(
+      filter: { fileAbsolutePath: {regex : "\/photograph/"} },
+      sort: {fields: [frontmatter___date], order: DESC},
     ) {
+      totalCount
       edges {
         node {
-          excerpt(pruneLength: 400)
           id
-          fields {
-            slug
-          }
           frontmatter {
             title
-            templateKey
-            date(formatString: "MMMM DD, YYYY")
+            description
+            photograph
           }
+          excerpt
+        }
+      }
+    }
+    testimonialsData: allMarkdownRemark(
+      filter: { fileAbsolutePath: {regex : "\/testimonials/"} },
+      sort: {fields: [frontmatter___date], order: DESC},
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            author
+            quote
+          }
+          excerpt
         }
       }
     }
