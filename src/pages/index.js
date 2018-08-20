@@ -5,9 +5,9 @@ import Link from 'gatsby-link'
 import Header from '../components/Header.js';
 import Gallery from '../components/Gallery.js';
 import Testimonials from '../components/Testimonials.js';
+import Footer from '../components/Footer.js';
 
-const IndexPage = (data) => {
-  console.log('!!!!!!!!!!!!!1', data);
+const IndexPage = ({ data: { photographsData, testimonialsData}}) => {
     
     let testimonialsComponent = '';
 
@@ -16,7 +16,7 @@ const IndexPage = (data) => {
 
       const testmonials = testimonialNodes.map(n => {
         const node = n.node;
-        return { id: node.id, author: node.frontmatter.author, testmonial: node.frontmatter.quote };
+        return { id: node.id, author: node.frontmatter.author, quote: node.frontmatter.quote };
       })
 
       testimonialsComponent = <Testimonials testimonials={testmonials} />
@@ -39,6 +39,7 @@ const IndexPage = (data) => {
     return (
       <div>
       <Header />
+      <Contact />
       <section className="section">
         <div className="container">
           <div className="content">
@@ -48,6 +49,7 @@ const IndexPage = (data) => {
       </section>
       {galleryComponent}
       {testimonialsComponent}
+      <Footer />
       </div>
     )
 }
@@ -89,5 +91,6 @@ export const pageQuery = graphql`
         }
       }
     }
+
   }
 `

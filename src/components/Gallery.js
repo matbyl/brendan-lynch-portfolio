@@ -84,7 +84,6 @@ export default class Gallery extends React.Component {
   }
 
   toggleModal() {
-    console.log('here', !this.state.modalOpen);
     this.setState({modalOpen: !this.state.modalOpen});
   }
 
