@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
+import Contact from '../components/Contact.js';
 import Header from '../components/Header.js';
 import Gallery from '../components/Gallery.js';
 import Testimonials from '../components/Testimonials.js';
 import Footer from '../components/Footer.js';
 
-const IndexPage = ({ data: { photographsData, testimonialsData}}) => {
+const IndexPage = ({ data: { homePageData: {title, about }, photographsData, testimonialsData}}) => {
     
+  console.log(homePageData);
     let testimonialsComponent = '';
 
     if (testimonialsData) {
@@ -44,6 +46,7 @@ const IndexPage = ({ data: { photographsData, testimonialsData}}) => {
         <div className="container">
           <div className="content">
             <h1 className="has-text-centered  has-text-weight-bold is-size-2">About</h1>
+            {about}
           </div>
         </div>
       </section>
@@ -58,6 +61,13 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery {
+    homePageData: markdownRemark(id: { eq: "C:/Users/Mathmoose/Documents/Code/brendan-lynch-portfolio/src/pages/home/index.md absPath of file >>> MarkdownRemark" }) {
+      html
+      frontmatter {
+        title
+        about
+      }
+    }
     photographsData: allMarkdownRemark(
       filter: { fileAbsolutePath: {regex : "\/photograph/"} },
       sort: {fields: [frontmatter___date], order: DESC},
