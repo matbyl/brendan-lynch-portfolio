@@ -50,10 +50,11 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    const doc = document.documentElement
-    const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    // When buiding static HTML for pages document & window will be undefined so we perform this check
+    // to ensure that they exists
+    const doc = typeof document !== 'undefined' ? document.documentElement : null;
+    const top = typeof window !== 'undefined' && doc ? (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) : null;
 
-    console.log(top)
     return (
       <Fade top>
         <div
