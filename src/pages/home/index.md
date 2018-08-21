@@ -1,5 +1,6 @@
 ---
 title: Brendan Lynch
+subtitle: Photographer - Weddings - Gothenburg - WO
 hero_image: /img/20180321-_dsc6836.jpg
 call_to_action_button: CONTACT
 about: >-
@@ -19,6 +20,5 @@ address: My address 123
 email: brendan@lynch.se
 phone: 073291921
 instagram: brendan
-subtitle: Photographer - Weddings - Gothenburg
 ---
 
