@@ -30,22 +30,22 @@ const ParallaxSection = styled.section.attrs({
 
 const IndexPage = ({
   data: {
-    homePageData: {
-      frontmatter: {
-        title,
-        subtitle,
-        about,
-        hero_image: heroImage,
-        address,
-        email,
-        phone,
-        instagram,
-      },
-    },
+    homePageData,
     photographsData,
     testimonialsData,
   },
 }) => {
+  const {
+    title,
+    subtitle,
+    about,
+    hero_image: heroImage,
+    address,
+    email,
+    phone,
+    instagram,
+  } = homePageData.frontmatter ? homePageData.frontmatter : '';
+  
   let testimonialsComponent = ''
 
   if (testimonialsData) {
