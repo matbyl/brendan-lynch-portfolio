@@ -116,8 +116,10 @@ export default IndexPage
 export const pageQuery = graphql`
   query IndexQuery {
     homePageData: markdownRemark(
-      id: {
-        eq: "C:/Users/Mathmoose/Documents/Code/brendan-lynch-portfolio/src/pages/home/index.md absPath of file >>> MarkdownRemark"
+      fields: {
+        slug: {
+          eq: "/home/"
+        } 
       }
     ) {
       html

@@ -32,6 +32,7 @@ collections:
       - file: "src/pages/home/index.md"
         label: "Home"
         name: "home"
+        slug: "home"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: subtitle, name: subtitle, widget: string}
