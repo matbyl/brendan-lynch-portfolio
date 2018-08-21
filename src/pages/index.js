@@ -44,7 +44,7 @@ const IndexPage = ({
     email,
     phone,
     instagram,
-  } = homePageData.frontmatter ? homePageData.frontmatter : '';
+  } = homePageData && homePageData.frontmatter ? homePageData.frontmatter : '';
   
   let testimonialsComponent = ''
 
