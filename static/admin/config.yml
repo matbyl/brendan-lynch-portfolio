@@ -34,9 +34,11 @@ collections:
         name: "home"
         fields:
           - {label: Title, name: title, widget: string}
+          - {label: subtitle, name: subtitle, widget: string}
           - {label: Hero Image, name: hero_image, widget: image}
           - {label: Call to action button, name: call_to_action_button, widget: string}
           - {label: About, name: about, widget: text}
-          - {label: Address, name: address, widget: string}
+          - {label: Address, name: address, widget: text}
           - {label: Email, name: email, widget: string}
           - {label: Phone, name: phone, widget: string}
+          - {label: Instagram, name: instagram, widget: string}

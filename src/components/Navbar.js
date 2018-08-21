@@ -1,30 +1,92 @@
-import React from 'react';
-import Link from 'gatsby-link';
+import React from 'react'
+import * as _ from 'lodash'
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from 'react-scroll'
+import Fade from 'react-reveal/Fade'
 
-import logo from '../img/logo.svg';
+import logo from '../img/logo.svg'
 
-const Navbar = () => (
-  <div className="nav has-text-centered">
-      <div className="navbar-links">
-      <Link to="/">
-        About
-      </Link>
-      <Link to="/">
-        Gallery
-      </Link>
-      <Link className="logo" to="/">
-        Brendan Lynch
-      </Link>
-      <Link to="/">
-        Testimonials
-      </Link>
-      <Link to="/">
-        Contact
-      </Link>
-      </div>
-      <h4 className="is-size-4">Photographer - Weddings - Gothenburg</h4>
-  </div>
-    
-);
+export default class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      top: true,
+    }
+  }
 
-export default Navbar;
+  componentDidMount() {
+    window.addEventListener(
+      'scroll',
+      _.throttle(() => {
+        // lodash debounce method.
+        let supportPageOffset = window.pageXOffset !== undefined
+        let isCSS1Compat = (document.compatMode || '') === 'CSS1Compat'
+        let scroll = {
+          y: supportPageOffset
+            ? window.pageYOffset
+            : isCSS1Compat
+              ? document.documentElement.scrollTop
+              : document.body.scrollTop,
+        }
+
+        if (scroll.y > 0) {
+          // 3000px (arbitrary - put whatever point you need there.)
+          this.setState({ top: false })
+        } else {
+          this.setState({ top: true })
+        }
+      }, 1000)
+    ) //ms
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll')
+  }
+
+  render() {
+    const doc = document.documentElement
+    const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+
+    console.log(top)
+    return (
+      <Fade top>
+        <div
+          className={
+            this.state.top
+              ? 'nav has-text-centered'
+              : 'nav has-text-centered nav-background'
+          }
+        >
+          <ul className="navbar-links">
+            <li>
+              <Link to="about" spy={true} smooth={true} duration={500}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="gallery" spy={true} smooth={true} duration={500}>
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link to="testimonials" spy={true} smooth={true} duration={500}>
+                Testimonials
+              </Link>
+            </li>
+            <li>
+              <Link to="footer" spy={true} smooth={true} duration={500}>
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Fade>
+    )
+  }
+}

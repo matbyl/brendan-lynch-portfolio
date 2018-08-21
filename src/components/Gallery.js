@@ -1,60 +1,69 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import Slider from 'react-slick';
+import Slider from 'react-slick'
 
-const PhotographTitle =  styled.h1`
+const PhotographTitle = styled.h1`
+  font-size: 24px;
+  text-align: center;
   color: white;
-`;
+  z-index: 42;
+`
 
-const PhotographDescription =  styled.h6`
+const PhotographDescription = styled.h6`
+  font-style: italic;
+  text-align: center;
   color: white;
-`;
+  z-index: 42;
+`
 
-const Photograph = styled.img`
-  height: 250px;
-  margin: 35px auto;
-`;
+const Photograph = styled.img``
 
 const GallerySection = styled.div`
-  text-align: center;
   width: 100%;
   padding: 25px;
   background: black;
-`;
-
+`
 
 const Thumbnail = styled.img`
-  height: 140px;
+  padding: 20px;
   cursor: pointer;
   opacity: 0.72;
   outline: none;
   &:hover {
     opacity: 1;
   }
-`;
+`
 
 class SelectedPhotographModal extends React.Component {
-
   render() {
+    const photograph = this.props.photograph
 
-    const photograph = this.props.photograph;
-    
-    return (<div className={'modal ' + (this.props.open ? 'is-active' : '')}>
-    <div className="modal-background" onClick={this.props.onClose}></div>
-    <div className="modal-content">
-      <p className="image is-4by3">
-        <img src={photograph.image} alt="" />
-      </p>
-    </div>
-    <button className="modal-close is-large" aria-label="close"></button>
-  </div>);
+    return (
+      <div className={'modal ' + (this.props.open ? 'is-active' : '')}>
+        <div className="modal-background" />
+        <div className="modal-content">
+          <PhotographTitle>{photograph.title}</PhotographTitle>
+          <p className="image is-4by3">
+            <Photograph src={photograph.image} />
+          </p>
+
+          <PhotographDescription>
+            {photograph.description}
+          </PhotographDescription>
+        </div>
+        <button
+          onClick={this.props.onClose}
+          className="modal-close is-large"
+          aria-label="close"
+        />
+      </div>
+    )
   }
-
 }
 
-const SelectedPhotograph = ({photograph}) => (
+const SelectedPhotograph = ({ photograph }) => (
   <div>
     <PhotographTitle>{photograph.title}</PhotographTitle>
     <Photograph src={photograph.image} />
@@ -63,56 +72,73 @@ const SelectedPhotograph = ({photograph}) => (
 )
 
 export default class Gallery extends React.Component {
-
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.select = this.select.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.openPhotograph = this.openPhotograph.bind(this)
+    this.closePhotograph = this.closePhotograph.bind(this)
 
     if (this.props.photographs && this.props.photographs.length > 0) {
       this.state = {
         selected: this.props.photographs[0],
-        modalOpen: false
+        modalOpen: false,
       }
     }
-    
   }
 
-  select(photograph) {
-    this.setState({ selected: photograph });
+  openPhotograph(photograph) {
+    this.setState({ selected: photograph, modalOpen: true })
   }
 
-  toggleModal() {
-    this.setState({modalOpen: !this.state.modalOpen});
+  closePhotograph() {
+    this.setState({ modalOpen: false })
   }
 
   render() {
     const settings = {
-      dots: true,
-      infinite: true,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1
-    };
+      autoplay: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      className: 'center',
+      centerMode: true,
+      infinite: true,
+      centerPadding: '60px',
+    }
 
-    const selectedPhotograph =  this.state.selected;
+    const selectedPhotograph = this.state.selected
 
     return (
-      <GallerySection>
-      <SelectedPhotographModal photograph={selectedPhotograph} open={this.state.modalOpen} onClose={() => this.toggleModal()}/>
-        
-    <PhotographTitle>{selectedPhotograph.title}</PhotographTitle>
-    <Photograph src={selectedPhotograph.image} onClick={() => this.toggleModal()} />
-    <PhotographDescription>{selectedPhotograph.description}</PhotographDescription>
-        
+      <GallerySection name="gallery">
+        <h1 className="has-text-centered  has-text-weight-bold has-text-white is-size-2">
+          Gallery
+        </h1>
+        <SelectedPhotographModal
+          photograph={selectedPhotograph}
+          open={this.state.modalOpen}
+          onClose={() => this.closePhotograph()}
+        />
+
         <section className="section">
-        <Slider {...settings}>
-          {this.props.photographs.map((photograph, index) => (<div style={{outline: 'none'}}><Thumbnail key={index} src={photograph.image} onClick={() => this.select(photograph)} /></div>))}
-        </Slider>
+          <Slider {...settings}>
+            {this.props.photographs.map((photograph, index) => (
+              <Thumbnail
+                key={index}
+                src={photograph.image}
+                onClick={() => this.openPhotograph(photograph)}
+              />
+            ))}
+          </Slider>
         </section>
       </GallerySection>
     )
   }
 
+  /*
+  
+    <PhotographTitle>{selectedPhotograph.title}</PhotographTitle>
+    <Photograph src={selectedPhotograph.image} onClick={() => this.toggleModal()} />
+    <PhotographDescription>{selectedPhotograph.description}</PhotographDescription>
+      
+  */
 }

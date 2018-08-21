@@ -18,5 +18,7 @@ about: >-
 address: My address 123
 email: brendan@lynch.se
 phone: 073291921
+instagram: brendan
+subtitle: Photographer - Weddings - Gothenburg
 ---
 

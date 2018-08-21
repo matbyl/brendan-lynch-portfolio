@@ -23,7 +23,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/data`,
-        name: "data",
+        name: 'data',
       },
     },
     'gatsby-plugin-sharp',
@@ -40,7 +40,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
-    'gatsby-plugin-netlify', // make sure to keep it last in the array  
+    'gatsby-plugin-netlify', // make sure to keep it last in the array
     `gatsby-plugin-styled-components`,
   ],
 }

@@ -2,6 +2,7 @@
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";
 @import url('https://fonts.googleapis.com/css?family=Tenali+Ramakrishna');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700');
 
 
 // Config vars
@@ -43,18 +44,17 @@ $primary-invert: $kaldi-red-invert
 .margin-top-0
   margin-top: 0 !important
 
-.slick-slide, .slick-slide *
-  outline: none !important;
-
 section
   padding: 0
 
 @import "~bulma"
 
-  
+h1, h5
+  font-family: 'Noto Serif', serif;
+
+
 .hero-image
   width: 100%;
-  
   background-image: radial-gradient(transparent, black), url("/img/hero.jpg")
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -63,38 +63,91 @@ section
   background-size: cover;
 
 
-.button
-  background: rgba(0,0,0,0.2);
-  color: white;
-  position: absolute;
-  width: 100px;
-  right: 50%;
-  transform: translateX(50%);
-  bottom: 20px;
-
+.nav-background
+  background: rgba(0,0,0,0.72);
+  
 .nav
-  font-weight: 700;
-  position: absolute;
+  z-index: 42;
+  margin: center;
+  position: fixed;
   text-align: center;
   text-shadow: none
   width: 100%;
-  background-color: rgba(108,110, 88,0);
   h4
     color: white;
-    font
-  .navbar-links
-    margin: auto;
-    .logo
-        font-size: 55px;
-        font-family: 'Tenali Ramakrishna', sans-serif;
+  ul.navbar-links
+    margin: 10px;
+    li
+      display: inline-block;  
+    li+li:before
+      content: "|";
+      padding: 0 1em;
     a
+      margin: 5px;
       color: white;
       margin-bottom: -20px;
       
+
+.logo
+  flex: 1;
+  margin: auto;
+  display: inline-block;
+  line-height: 1.2;
+  font-size: 55px;
+  text-align: center;
+  font-family: 'Noto Serif', serif;
+  a
+    font-weight: 500;
+    text-decoration: underline;
+    color: white;
+
+a.button
+    background: rgba(0,0,0,0.2);
+    color: white;
+    font-size: 18px;
+    width: 120px;
+    text-decoration: none;
+
+
+  
+
+    
+
+.subtitle
+  margin: 5px;
+  font-size: 35px;
+  color: white
+
 .testimonials
-  margin: 25px;
+  padding: 35px;
   .testimonial
     display: block !important;
     margin: auto;
-    width: 350px !important;
+    width: 500px !important;
+
+.slick-center
+  transform: scale(1.2);
+
+.slick-slide
+  transition: all .4s ease-in-out;
+
+.slick-next:before
+  font-weight: bold;
+  content: '❱';
+
+.slick-prev:before
+  font-weight: bold;
+  content: '❰';
+
+
+.footer
+  padding: 25px;
+  color: rgba(255,255,255,0.72);
+  background: #2A2A2A;
+  .social
+    font-size: 72px;
+    a
+      color: rgba(255,255,255,0.72);
+      &:hover
+        color: rgba(255,255,255,0.12);
     
