@@ -27,7 +27,7 @@ const GallerySection = styled.div`
 `
 
 const Thumbnail = styled.img`
-  padding: 20px;
+  padding: 30px;
   cursor: pointer;
   opacity: 0.72;
   outline: none;
@@ -109,7 +109,7 @@ export default class Gallery extends React.Component {
     const selectedPhotograph = this.state.selected
 
     return (
-      <GallerySection name="gallery">
+      <GallerySection>
         <h1 className="has-text-centered  has-text-weight-bold has-text-white is-size-2">
           Gallery
         </h1>

@@ -19,7 +19,7 @@ const Footer = ({ address, email, phone, instagram }) => (
     </div>
     <div className="social has-text-centered">
       <a href={instagram}>
-        <i class="fab fa-instagram" />
+        <i className="fab fa-instagram" />
       </a>
     </div>
   </div>

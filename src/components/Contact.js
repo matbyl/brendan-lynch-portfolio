@@ -81,18 +81,18 @@ export default class Contact extends React.Component {
                 <span className="icon is-small is-left">
                   <i className="fas fa-folder" />
                 </span>
-                <span class="icon is-small is-right">
+                <span className="icon is-small is-right">
                   {this.state.subjectValid ? (
                     ''
                   ) : (
-                    <i class="fas fa-exclamation-triangle" />
+                    <i className="fas fa-exclamation-triangle" />
                   )}
                 </span>
               </div>
               {this.state.subjectValid ? (
                 ''
               ) : (
-                <p class="help is-danger">{this.state.formErrors.subject}</p>
+                <p className="help is-danger">{this.state.formErrors.subject}</p>
               )}
             </div>
             <div className="field">
@@ -108,7 +108,7 @@ export default class Contact extends React.Component {
                 {this.state.messageValid ? (
                   ''
                 ) : (
-                  <p class="help is-danger">{this.state.formErrors.message}</p>
+                  <p className="help is-danger">{this.state.formErrors.message}</p>
                 )}
               </div>
             </div>

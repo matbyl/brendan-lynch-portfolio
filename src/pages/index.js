@@ -96,7 +96,7 @@ const IndexPage = ({
           </div>
         </section>
       </Fade>
-      <Fade>{galleryComponent}</Fade>
+      {galleryComponent}
       <ParallaxSection name="testimonials" heroImage={heroImage}>
         {testimonialsComponent}
       </ParallaxSection>
