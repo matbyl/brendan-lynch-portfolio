@@ -45,7 +45,7 @@ class SelectedPhotographModal extends React.Component {
         <div className="modal-background" />
         <div className="modal-content">
           <PhotographTitle>{photograph.title}</PhotographTitle>
-          <p className="image is-4by3">
+          <p className="image">
             <Photograph src={photograph.image} />
           </p>
 
