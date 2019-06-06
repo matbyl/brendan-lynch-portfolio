@@ -89,20 +89,30 @@ export default class Gallery extends React.Component {
     const speed = 500;
     const settings = {
       autoplay: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      className: "center",
       centerMode: true,
-      centerPadding: "60px",
-      adaptiveHeight: true,
-      // NOTE: afterChange is broken when adaptiveHeight is set to true. See:
-      // https://github.com/akiran/react-slick/issues/1262. Therefoe this hacky solution.
-      beforeChange: (current, next) =>
-        setTimeout(
-          () =>
-            this.setState(prevState => ({ ...prevState, currentSlide: next })),
-          speed
-        ),
+      responsive: [
+        {
+          breakpoint: 3000,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ],
       speed
     };
 
@@ -119,29 +129,16 @@ export default class Gallery extends React.Component {
           onClose={() => this.closePhotograph()}
         />
 
-        <section className="section">
-          <Slider {...settings}>
-            {this.props.photographs.map((photograph, index) => (
-              <Thumbnail
-                key={index}
-                className={`${
-                  index === this.currentSlide ? "activeClass" : ""
-                }`}
-                src={photograph.image}
-                onClick={() => this.openPhotograph(photograph)}
-              />
-            ))}
-          </Slider>
-        </section>
+        <Slider {...settings}>
+          {this.props.photographs.map((photograph, index) => (
+            <Thumbnail
+              key={index}
+              src={photograph.image}
+              onClick={() => this.openPhotograph(photograph)}
+            />
+          ))}
+        </Slider>
       </GallerySection>
     );
   }
-
-  /*
-  
-    <PhotographTitle>{selectedPhotograph.title}</PhotographTitle>
-    <Photograph src={selectedPhotograph.image} onClick={() => this.toggleModal()} />
-    <PhotographDescription>{selectedPhotograph.description}</PhotographDescription>
-      
-  */
 }

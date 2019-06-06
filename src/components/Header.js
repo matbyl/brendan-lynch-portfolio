@@ -33,8 +33,12 @@ export default class Header extends React.Component {
       >
         <div className="hero-body" />
         <div className="logo">
-          <Link to="/">Brendan Lynch</Link>
-          <h5 className="subtitle is-size-5">{this.props.subtitle}</h5>
+          <h1 className="title is-size-1-desktop is-size-2-mobile has-text-light">
+            Brendan Lynch
+          </h1>
+          <h5 className="subtitle is-size-5-desktop is-size-6-mobile has-text-light">
+            {this.props.subtitle}
+          </h5>
           <div className="button" onClick={this.toggleContact}>
             CONTACT
           </div>

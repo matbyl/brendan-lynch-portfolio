@@ -1,77 +1,72 @@
 import React from "react";
 import * as _ from "lodash";
 import { Link } from "react-scroll";
-// import Fade from 'react-reveal/Fade'
+
+const NavbarBurger = ({ toggleMenu, active }) => (
+  <a
+    role="button"
+    className={`navbar-burger ${active ? "is-active" : ""}`}
+    aria-label="menu"
+    aria-expanded="false"
+    onClick={toggleMenu}
+  >
+    <span aria-hidden="true" />
+    <span aria-hidden="true" />
+    <span aria-hidden="true" />
+  </a>
+);
+
+const NavbarItem = ({ link, text }) => (
+  <Link
+    className="navbar-item"
+    to={link}
+    spy={true}
+    smooth={true}
+    duration={500}
+  >
+    {text}
+  </Link>
+);
 
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      top: true
+      activeMenu: false
     };
   }
 
-  componentDidMount() {
-    window.addEventListener(
-      "scroll",
-      _.throttle(() => {
-        // lodash debounce method.
-        let supportPageOffset = window.pageXOffset !== undefined;
-        let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
-        let scroll = {
-          y: supportPageOffset
-            ? window.pageYOffset
-            : isCSS1Compat
-              ? document.documentElement.scrollTop
-              : document.body.scrollTop
-        };
-
-        if (scroll.y > 0) {
-          // 3000px (arbitrary - put whatever point you need there.)
-          this.setState({ top: false });
-        } else {
-          this.setState({ top: true });
-        }
-      }, 1000)
-    ); //ms
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll");
-  }
+  toggleMenu = () => {
+    this.setState({
+      activeMenu: !this.state.activeMenu
+    });
+  };
 
   render() {
     return (
-      <div
-        className={
-          this.state.top
-            ? "nav has-text-centered"
-            : "nav has-text-centered nav-background"
-        }
+      <nav
+        className="navbar is-black"
+        role="navigation"
+        aria-label="main navigation"
       >
-        <ul className="navbar-links">
-          <li>
-            <Link to="about" spy={true} smooth={true} duration={500}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="gallery" spy={true} smooth={true} duration={500}>
-              Gallery
-            </Link>
-          </li>
-          <li>
-            <Link to="testimonials" spy={true} smooth={true} duration={500}>
-              Testimonials
-            </Link>
-          </li>
-          <li>
-            <Link to="footer" spy={true} smooth={true} duration={500}>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </div>
+        <div className="navbar-brand">
+          <NavbarBurger
+            toggleMenu={this.toggleMenu}
+            active={this.state.activeMenu}
+          />
+        </div>
+
+        <div
+          className={`navbar-menu ${this.state.activeMenu ? "is-active" : ""}`}
+        >
+          <div className="navbar-end">
+            <NavbarItem link="about" text="About" />
+            <NavbarItem link="gallery" text="Gallery" />
+            <NavbarItem link="testimonials" text="Testimonials" />
+            <NavbarItem link="footer" text="Contact" />
+          </div>
+        </div>
+      </nav>
     );
   }
 }

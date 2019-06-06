@@ -85,7 +85,7 @@ const IndexPage = ({
           </div>
         </div>
       </section>
-      <section className="section">
+      <section name="gallery" className="section">
         <div className="container">{galleryComponent}</div>
       </section>
 

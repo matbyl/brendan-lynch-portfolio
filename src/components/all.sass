@@ -55,18 +55,7 @@ h1, h5
     height: 100%;
     background: black;
 
-.hero-image::after
-  content: ''; 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  bottom: 0; 
-  right: 0; 
-  background: radial-gradient(circle, transparent 50%, black 150%);
-
 .hero-image
-  width: 100%;
-  height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/img/hero-4k.jpg")
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -126,21 +115,13 @@ div.button
     text-decoration: none;
 
 
-  
-
-    
-
-.subtitle
-  margin: 5px;
-  font-size: 35px;
-  color: white
 
 .testimonials
   padding: 35px;
   .testimonial
     display: block !important;
     margin: auto;
-    width: 500px !important;
+    max-width: 500px !important;
 
 .footer
   padding: 25px;

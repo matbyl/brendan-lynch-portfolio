@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Slider from "react-slick";
 
 const Quote = styled.blockquote`
-  font-size: 24px;
   color: white;
   font-style: italic;
   display: block;
@@ -32,7 +31,6 @@ const Quote = styled.blockquote`
 const Cite = styled.cite`
   color: #4bb543;
   font-weight: bold;
-  font-size: 16px;
   margin-left: 35px;
   &:before {
     content: "- ";
@@ -53,9 +51,13 @@ const Testimonials = ({ testimonials }) => (
   <div className="testimonials">
     <Slider {...settings}>
       {testimonials.map(testimonial => (
-        <div key={v4()} className="testimonial">
-          <Quote>{testimonial.quote}</Quote>
-          <Cite>{testimonial.author}</Cite>
+        <div className="section">
+          <div key={v4()} className="container">
+            <div className="testimonial">
+              <Quote className="is-size-5">{testimonial.quote}</Quote>
+              <Cite className="is-size-7">{testimonial.author}</Cite>
+            </div>
+          </div>
         </div>
       ))}
     </Slider>
