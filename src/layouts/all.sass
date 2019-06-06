@@ -1,17 +1,12 @@
-@import "~bulma/sass/utilities/initial-variables"
+@import "~bulma/sass/utilities/initial-variables";
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";
 @import "../styles/fonts/Faune/faune.css";
 @import url('https://fonts.googleapis.com/css?family=Tenali+Ramakrishna');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:300,400,700');
 
-
-// Config vars
-$kaldi-red: #FD461E
-$kaldi-red-invert: #fff
-
-$primary: $kaldi-red
-$primary-invert: $kaldi-red-invert
+html body
+  background: black;
 
 .content .taglist
   list-style: none
@@ -54,15 +49,27 @@ section
 h1, h5
   font-family: 'Faune', 'Noto Serif', serif;
 
+.hero-image::before
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: black;
 
 .hero-image
   width: 100%;
-  background-image: radial-gradient(transparent, black), url("/img/hero.jpg")
+  height: 100%;
+  background-image: url("/img/hero-4k.jpg")
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
+  @media (max-width: 1920px)
+    background-image: url('/img/hero-1080p.jpg') no-repeat center top;
+  
+  @media (max-width: 1280px)
+    background-image: url('/img/hero-720p.jpg') no-repeat center top;
 
 
 .nav-background
@@ -138,18 +145,18 @@ a.button
         color: rgba(255,255,255,0.12);
 
 
-.slick-center
-  transform: scale(1.2);
+// .slick-center
+//   transform: scale(1.2);
 
-.slick-slide
-  transition: all .4s ease-in-out;
+// .slick-slide
+//   transition: all .4s ease-in-out;
 
-.slick-next:before
-  font-weight: bold;
-  content: '❱';
+// .slick-next:before
+//   font-weight: bold;
+//   content: '❱';
 
-.slick-prev:before
-  font-weight: bold;
-  content: '❰';
+// .slick-prev:before
+//   font-weight: bold;
+//   content: '❰';
 
     

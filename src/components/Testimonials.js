@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { v4 } from 'uuid'
-import styled from 'styled-components'
-import Slider from 'react-slick'
+import React from "react";
+import PropTypes from "prop-types";
+import { v4 } from "uuid";
+import styled from "styled-components";
+import Slider from "react-slick";
 
 const Quote = styled.blockquote`
   font-size: 24px;
@@ -14,7 +14,7 @@ const Quote = styled.blockquote`
   position: relative;
 
   &:before {
-    content: '\\201C';
+    content: "\\201C";
 
     /*Font*/
     font-family: Georgia, serif;
@@ -27,7 +27,7 @@ const Quote = styled.blockquote`
     left: 2px;
     top: 5px;
   }
-`
+`;
 
 const Cite = styled.cite`
   color: #4bb543;
@@ -35,19 +35,19 @@ const Cite = styled.cite`
   font-size: 16px;
   margin-left: 35px;
   &:before {
-    content: '- ';
+    content: "- ";
   }
-`
+`;
 
 const settings = {
-  arrows: false,
+  arrows: true,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 8000,
-}
+  autoplaySpeed: 8000
+};
 
 const Testimonials = ({ testimonials }) => (
   <div className="testimonials">
@@ -60,15 +60,15 @@ const Testimonials = ({ testimonials }) => (
       ))}
     </Slider>
   </div>
-)
+);
 
 Testimonials.propTypes = {
   testimonials: PropTypes.arrayOf(
     PropTypes.shape({
       quote: PropTypes.string,
-      author: PropTypes.string,
+      author: PropTypes.string
     })
-  ),
-}
+  )
+};
 
-export default Testimonials
+export default Testimonials;
