@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Slider from "react-slick";
 
-library.add(faEnvelope);
+import Layout from "../components/layout";
 
 import Header from "../components/Header.js";
 import Gallery from "../components/Gallery.js";
 import Testimonials from "../components/Testimonials.js";
 import Footer from "../components/Footer.js";
+
+library.add(faEnvelope);
 
 const ParallaxSection = styled.section`
   background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
@@ -25,7 +26,6 @@ const IndexPage = ({
   data: { homePageData, photographsData, testimonialsData }
 }) => {
   const {
-    title,
     subtitle,
     about,
     hero_image: heroImage,
@@ -72,7 +72,7 @@ const IndexPage = ({
   }
 
   return (
-    <div>
+    <Layout>
       <Header heroImage={heroImage} subtitle={subtitle} />
 
       <section name="about" className="section has-background-light">
@@ -88,10 +88,10 @@ const IndexPage = ({
       <section className="section">
         <div className="container">{galleryComponent}</div>
       </section>
-      {/* 
+
       <ParallaxSection name="testimonials" heroImage={heroImage}>
         {testimonialsComponent}
-      </ParallaxSection> */}
+      </ParallaxSection>
       <Footer
         name="footer"
         address={address}
@@ -99,7 +99,7 @@ const IndexPage = ({
         phone={phone}
         instagram={instagram}
       />
-    </div>
+    </Layout>
   );
 };
 

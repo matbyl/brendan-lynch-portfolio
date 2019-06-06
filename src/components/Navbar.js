@@ -1,16 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from "react-scroll";
+import { Link } from "react-scroll";
 // import Fade from 'react-reveal/Fade'
-
-import logo from "../img/logo.svg";
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -50,15 +41,6 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    // When buiding static HTML for pages document & window will be undefined so we perform this check
-    // to ensure that they exists
-    const doc =
-      typeof document !== "undefined" ? document.documentElement : null;
-    const top =
-      typeof window !== "undefined" && doc
-        ? (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
-        : null;
-
     return (
       <div
         className={

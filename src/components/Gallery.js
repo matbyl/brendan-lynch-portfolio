@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import Siema from "siema";
 
-const Slide = props => <img {...props} alt="slide" />;
+import Slider from "react-slick";
 
 const PhotographTitle = styled.h1`
   font-size: 24px;
@@ -63,14 +62,6 @@ class SelectedPhotographModal extends React.Component {
   }
 }
 
-const SelectedPhotograph = ({ photograph }) => (
-  <div>
-    <PhotographTitle>{photograph.title}</PhotographTitle>
-    <Photograph src={photograph.image} />
-    <PhotographDescription>{photograph.description}</PhotographDescription>
-  </div>
-);
-
 export default class Gallery extends React.Component {
   constructor(props) {
     super(props);
@@ -116,15 +107,33 @@ export default class Gallery extends React.Component {
     };
 
     const selectedPhotograph = this.state.selected;
-    const t = new Siema();
 
     return (
-      <div className="siema">
-        <div>Hi, I'm slide 1</div>
-        <div>Hi, I'm slide 2</div>
-        <div>Hi, I'm slide 3</div>
-        <div>Hi, I'm slide 4</div>
-      </div>
+      <GallerySection>
+        <h1 className="has-text-centered  has-text-weight-bold has-text-white is-size-2">
+          Gallery
+        </h1>
+        <SelectedPhotographModal
+          photograph={selectedPhotograph}
+          open={this.state.modalOpen}
+          onClose={() => this.closePhotograph()}
+        />
+
+        <section className="section">
+          <Slider {...settings}>
+            {this.props.photographs.map((photograph, index) => (
+              <Thumbnail
+                key={index}
+                className={`${
+                  index === this.currentSlide ? "activeClass" : ""
+                }`}
+                src={photograph.image}
+                onClick={() => this.openPhotograph(photograph)}
+              />
+            ))}
+          </Slider>
+        </section>
+      </GallerySection>
     );
   }
 

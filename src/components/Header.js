@@ -35,9 +35,9 @@ export default class Header extends React.Component {
         <div className="logo">
           <Link to="/">Brendan Lynch</Link>
           <h5 className="subtitle is-size-5">{this.props.subtitle}</h5>
-          <a className="button" onClick={this.toggleContact}>
+          <div className="button" onClick={this.toggleContact}>
             CONTACT
-          </a>
+          </div>
         </div>
         <Contact open={this.state.contactOpen} onClose={this.toggleContact} />
       </HeroSection>

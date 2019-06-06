@@ -1,67 +1,68 @@
-import React from 'react'
+import React from "react";
 
 export default class Contact extends React.Component {
   constructor(props) {
-    super(props)
-    this.handleUserInput = this.handleUserInput.bind(this)
+    super(props);
+    this.handleUserInput = this.handleUserInput.bind(this);
 
     this.state = {
-      subject: '',
-      message: '',
-      formErrors: { message: '', subject: '' },
+      subject: "",
+      message: "",
+      formErrors: { message: "", subject: "" },
       subjectValid: false,
       messageValid: false,
-      formValid: false,
-    }
+      formValid: false
+    };
   }
 
   handleUserInput(e) {
-    const name = e.target.name
-    const value = e.target.value
+    const name = e.target.name;
+    const value = e.target.value;
     this.setState({ [name]: value }, () => {
-      this.validateField(name, value)
-    })
+      this.validateField(name, value);
+    });
   }
 
   validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors
-    let subjectValid = this.state.subjectValid
-    let messageValid = this.state.messageValid
+    let fieldValidationErrors = this.state.formErrors;
+    let subjectValid = this.state.subjectValid;
+    let messageValid = this.state.messageValid;
 
     switch (fieldName) {
-      case 'subject':
-        subjectValid = value.length >= 6
+      case "subject":
+        subjectValid = value.length >= 6;
         fieldValidationErrors.subject = subjectValid
-          ? ''
-          : 'This subject is too short. Need to be at least 6 characters'
-      case 'message':
-        messageValid = value.length >= 20
+          ? ""
+          : "This subject is too short. Need to be at least 6 characters";
+        break;
+      case "message":
+        messageValid = value.length >= 20;
         fieldValidationErrors.message = messageValid
-          ? ''
-          : 'This message is too short. Need to be at least 20 characters'
-        break
+          ? ""
+          : "This message is too short. Need to be at least 20 characters";
+        break;
       default:
-        break
+        break;
     }
     this.setState(
       {
         formErrors: fieldValidationErrors,
         messageValid,
-        subjectValid,
+        subjectValid
       },
       this.validateForm
-    )
+    );
   }
 
   validateForm() {
     this.setState({
-      formValid: this.state.subjectValid && this.state.messageValid,
-    })
+      formValid: this.state.subjectValid && this.state.messageValid
+    });
   }
 
   render() {
     return (
-      <div className={'modal ' + (this.props.open ? 'is-active' : '')}>
+      <div className={"modal " + (this.props.open ? "is-active" : "")}>
         <div className="modal-background" />
         <div className="modal-content">
           <div className="box">
@@ -83,16 +84,18 @@ export default class Contact extends React.Component {
                 </span>
                 <span className="icon is-small is-right">
                   {this.state.subjectValid ? (
-                    ''
+                    ""
                   ) : (
                     <i className="fas fa-exclamation-triangle" />
                   )}
                 </span>
               </div>
               {this.state.subjectValid ? (
-                ''
+                ""
               ) : (
-                <p className="help is-danger">{this.state.formErrors.subject}</p>
+                <p className="help is-danger">
+                  {this.state.formErrors.subject}
+                </p>
               )}
             </div>
             <div className="field">
@@ -106,9 +109,11 @@ export default class Contact extends React.Component {
                   onChange={event => this.handleUserInput(event)}
                 />
                 {this.state.messageValid ? (
-                  ''
+                  ""
                 ) : (
-                  <p className="help is-danger">{this.state.formErrors.message}</p>
+                  <p className="help is-danger">
+                    {this.state.formErrors.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -116,18 +121,18 @@ export default class Contact extends React.Component {
               <a
                 className="button is-success"
                 href={
-                  'mailto:materbyl@gmail.com?subject=' +
+                  "mailto:materbyl@gmail.com?subject=" +
                   this.state.subject +
-                  '&body=' +
+                  "&body=" +
                   this.state.message
                 }
               >
                 Send
               </a>
             ) : (
-              <a className="button is-success" disabled>
+              <div className="button is-success" disabled>
                 Send
-              </a>
+              </div>
             )}
           </div>
         </div>
@@ -137,6 +142,6 @@ export default class Contact extends React.Component {
           aria-label="close"
         />
       </div>
-    )
+    );
   }
 }

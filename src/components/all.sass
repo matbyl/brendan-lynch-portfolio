@@ -55,10 +55,19 @@ h1, h5
     height: 100%;
     background: black;
 
+.hero-image::after
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  bottom: 0; 
+  right: 0; 
+  background: radial-gradient(circle, transparent 50%, black 150%);
+
 .hero-image
   width: 100%;
   height: 100%;
-  background-image: url("/img/hero-4k.jpg")
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/img/hero-4k.jpg")
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
@@ -66,10 +75,10 @@ h1, h5
   background-size: cover;
   
   @media (max-width: 1920px)
-    background-image: url('/img/hero-1080p.jpg') no-repeat center top;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/img/hero-1080p.jpg') no-repeat center top;
   
   @media (max-width: 1280px)
-    background-image: url('/img/hero-720p.jpg') no-repeat center top;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/img/hero-720p.jpg') no-repeat center top;
 
 
 .nav-background
@@ -109,7 +118,7 @@ h1, h5
     font-weight: 500;
     color: white;
 
-a.button
+div.button
     background: rgba(0,0,0,0.2);
     color: white;
     font-size: 18px;
@@ -145,18 +154,18 @@ a.button
         color: rgba(255,255,255,0.12);
 
 
-// .slick-center
-//   transform: scale(1.2);
+.slick-center
+  transform: scale(1.2);
 
-// .slick-slide
-//   transition: all .4s ease-in-out;
+.slick-slide
+  transition: all .4s ease-in-out;
 
-// .slick-next:before
-//   font-weight: bold;
-//   content: '❱';
+.slick-next:before
+  font-weight: bold;
+  content: '❱';
 
-// .slick-prev:before
-//   font-weight: bold;
-//   content: '❰';
+.slick-prev:before
+  font-weight: bold;
+  content: '❰';
 
     
