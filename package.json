@@ -24,7 +24,7 @@
     "gatsby-source-filesystem": "^2.0.38",
     "gatsby-transformer-remark": "^2.3.12",
     "gatsby-transformer-sharp": "^2.1.21",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "lodash-webpack-plugin": "^0.11.4",
     "netlify-cms": "^2.9.1",
     "node-sass": "^4.12.0",
