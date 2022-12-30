@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/react-fontawesome": "^0.1.2",
     "bulma": "^0.7.5",
-    "gatsby": "^2.8.5",
+    "gatsby": "^2.32.13",
     "gatsby-image": "^2.1.2",
     "gatsby-link": "^2.1.1",
     "gatsby-module-loader": "^1.0.11",
